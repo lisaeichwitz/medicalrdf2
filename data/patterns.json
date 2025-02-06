@@ -1,0 +1,146 @@
+[
+  {
+    "label": "DISORDER",
+    "pattern": "Intellectual Disability"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "Global Developmental Delay"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "Language Disorder"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "Speech Sound Disorder"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "Childhood-Onset Fluency Disorder"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "Social Communication Disorder"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "Communication Disorder"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "Autism Spectrum Disorder"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "ASD"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "Attention Deficit/Hyperactivity Disorder"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "ADHD"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "Learning Disorder"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "Developmental Coordination Disorder"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "Stereotypic Movement Disorder"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "Tourette's Disorder"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "Persistent Motor or Vocal Tic Disorder"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "Tic Disorder"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "Neurodevelopmental Disorder"
+  },
+  {
+    "label": "DISORDER",
+    "pattern": "Panic attacks"
+  },
+  {
+    "label": "SYMPTOM",
+    "pattern": "fear"
+  },
+  {
+    "label": "SYMPTOM",
+    "pattern": "fear"
+  },
+  {
+    "label": "DURATION",
+    "pattern": "at least 1 month"
+  },
+  {
+    "label": "ACTION_TENDENCIES",
+    "pattern": "urges to escape"
+  },
+  {
+    "label": "ACTION_TENDENCIES",
+    "pattern": "urges to fight"
+  },
+  {
+    "label": "ACTION_TENDENCIES",
+    "pattern": "fight and flight"
+  },
+  {
+    "label": "SYMPTOM",
+    "pattern": "perceptions of imminent threat or danger"
+  },
+  {
+    "label": "SYMPTOM",
+    "pattern": "autonomic arousal"
+  },
+  {
+    "label": "SYMPTOM",
+    "pattern": "perception of threat"
+  },
+  {
+    "label": "SYMPTOM",
+    "pattern": "perception of threat"
+  },
+  {
+    "label": "SYMPTOM",
+    "pattern": "elevated heart rate"
+  },
+  {
+    "label": "SYMPTOM",
+    "pattern": "sympathetic nervous system activation"
+  },
+  {
+    "label": "SYMPTOM",
+    "pattern": "accelerated heart rate"
+  },
+  {
+    "label": "SYMPTOM",
+    "pattern": "arrhythmic heart rate"
+  },
+  {
+    "label": "SYMPTOM",
+    "pattern": "perceive cardiac events when none exist"
+  },
+  {
+    "label": "SYMPTOM",
+    "pattern": "intense abrupt fear in the absence of threat or danger"
+  },
+  {
+    "label": "SYMPTOM",
+    "pattern": "noncognitive panic"
+  }
+]

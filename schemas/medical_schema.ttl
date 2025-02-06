@@ -1,0 +1,40 @@
+@prefix ex: <http://example.org/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Define Classes
+ex:Disorder rdf:type rdfs:Class ;
+    rdfs:label "Medical Disorder" ;
+    rdfs:comment "A disorder that affects health" .
+
+ex:Symptom rdf:type rdfs:Class ;
+    rdfs:label "Symptom" ;
+    rdfs:comment "A characteristic sign of a disorder" .
+
+ex:Diagnosis rdf:type rdfs:Class ;
+    rdfs:label "Diagnosis" ;
+    rdfs:comment "A medical determination of a disorder" .
+
+# Define Properties
+ex:hasSymptom rdf:type rdf:Property ;
+    rdfs:domain ex:Disorder ;
+    rdfs:range ex:Symptom ;
+    rdfs:label "has symptom" ;
+    rdfs:comment "Relates a disorder to its symptoms" .
+
+ex:hasDiagnosis rdf:type rdf:Property ;
+    rdfs:domain ex:Patient ;
+    rdfs:range ex:Diagnosis ;
+    rdfs:label "has diagnosis" ;
+    rdfs:comment "Relates a patient to their diagnosis" .
+
+# Example Instances
+ex:PanicAttack rdf:type ex:Disorder ;
+    ex:hasSymptom ex:ShortnessOfBreath, ex:ChestPain .
+
+ex:ShortnessOfBreath rdf:type ex:Symptom ;
+    rdfs:label "Shortness of Breath" .
+
+ex:ChestPain rdf:type ex:Symptom ;
+    rdfs:label "Chest Pain" .
