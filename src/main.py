@@ -4,6 +4,8 @@ import json
 import entity_retokenizer
 import citation_component
 import description_extractor
+from rdflib import Graph, URIRef, Literal, Namespace
+from rdflib.namespace import RDF, RDFS, DCTERMS
 
 
 def main():
@@ -38,6 +40,24 @@ def main():
 
     for disorder, description in doc._.disorder_descriptions:
         print(f"Disorder: {disorder}\nDescription: {description}\n")
+
+    # Initialize RDF graph
+    g = Graph()
+
+    # Define namespaces
+    EX = Namespace("http://example.org/disorder/")
+    g.bind("ex", EX)
+    g.bind("rdfs", RDFS)
+    g.bind("dct", DCTERMS)
+
+    # Convert extracted disorders & descriptions into RDF triples
+    for disorder, description in doc._.disorder_descriptions:
+        disorder_uri = URIRef(EX + disorder.replace(" ", "_"))  # Create a unique URI
+        g.add((disorder_uri, RDFS.label, Literal(disorder)))  # Add disorder label
+        g.add((disorder_uri, DCTERMS.description, Literal(description)))  # Add description
+
+    # Print RDF graph in Turtle format
+    print(g.serialize(format="turtle"))
 
 
 if __name__ == "__main__":
