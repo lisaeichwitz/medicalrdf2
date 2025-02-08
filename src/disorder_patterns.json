@@ -1,0 +1,128 @@
+[
+  {
+    "label": "DISORDER",
+    "pattern": [
+      {
+        "lemma": "panic"
+      },
+      {
+        "lemma": "attack"
+      }
+    ]
+  },
+  {
+    "label": "DISORDER",
+    "pattern": [
+      {
+        "lemma": "anxiety"
+      },
+      {
+        "lemma": "disorder"
+      }
+    ]
+  },
+  {
+    "label": "DISORDER",
+    "pattern": [
+      {
+        "lemma": "depression"
+      },
+      {
+        "lemma": "disorder"
+      }
+    ]
+  },
+  {
+    "label": "DISORDER",
+    "pattern": [
+      {
+        "lemma": "bipolar"
+      },
+      {
+        "lemma": "disorder"
+      }
+    ]
+  },
+  {
+    "label": "DISORDER",
+    "pattern": [
+      {
+        "lemma": "schizophrenia"
+      }
+    ]
+  },
+  {
+    "label": "DISORDER",
+    "pattern": [
+      {
+        "lemma": "insomnia"
+      }
+    ]
+  },
+  {
+    "label": "DISORDER",
+    "pattern": [
+      {
+        "lemma": "autism"
+      }
+    ]
+  },
+  {
+    "label": "DISORDER",
+    "pattern": [
+      {
+        "lemma": "alcohol"
+      },
+      {
+        "lemma": "addiction"
+      }
+    ]
+  },
+  {
+    "label": "DISORDER",
+    "pattern": [
+      {
+        "lemma": "amphetamine"
+      },
+      {
+        "lemma": "addiction"
+      }
+    ]
+  },
+  {
+    "label": "DISORDER",
+    "pattern": [
+      {
+        "lower": "panic"
+      },
+      {
+        "lower": "attack"
+      }
+    ]
+  },
+  {
+    "label": "DISORDER",
+    "pattern": [
+      {
+        "lower": "panic"
+      },
+      {
+        "lower": "disorder"
+      }
+    ]
+  },
+  {
+    "label": "DISORDER",
+    "pattern": [
+      {
+        "lower": "acute"
+      },
+      {
+        "lower": "stress"
+      },
+      {
+        "lower": "disorder"
+      }
+    ]
+  }
+]
