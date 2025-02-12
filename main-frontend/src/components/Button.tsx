@@ -2,11 +2,12 @@ import styled from 'styled-components'
 
 interface ButtonProps {
     children: string;
+    onClick?: () => void;
 }
 
-export const Button = ({children}: ButtonProps) => {
+export const Button = ({children, onClick}: ButtonProps) => {
     return (
-        <SButton>{children}</SButton>
+        <SButton onClick={onClick}>{children}</SButton>
     )
 }
 

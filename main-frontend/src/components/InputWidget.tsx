@@ -1,13 +1,19 @@
 import styled from 'styled-components'
 import {Input, Button} from './index'
 
-export const InputWidget = () => {
+interface InputWidgetProps {
+    text: string;
+    setText: (text: string) => void;
+    onExtract: () => void;
+}
+
+export const InputWidget = ({text, setText, onExtract}: InputWidgetProps) => {
     return (
         <SHeader>
             <h2>Text eingeben</h2>
             <SInputArea>
-                <Input/>
-                <Button>Text speichern</Button>
+                <Input value={text} setText={setText}/>
+                <Button onClick={onExtract}>Text speichern</Button>
             </SInputArea>
 
             <SUploadArea>

@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-export const Input = () => {
+export const Input = ({value, setText}) => {
     return (
-        <SInput rows={40}/>
+        <SInput rows={40} value={value} onChange={(ev) => setText(ev.target.value)}/>
     )
 }
 
