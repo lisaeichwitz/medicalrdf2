@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
-export const Input = ({value, setText}) => {
+interface InputProps {
+    value: string;
+    setText: (text: string) => void;
+}
+
+export const Input = ({value, setText}: InputProps) => {
     return (
         <SInput rows={40} value={value} onChange={(ev) => setText(ev.target.value)}/>
     )

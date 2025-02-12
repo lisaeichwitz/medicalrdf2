@@ -5,9 +5,9 @@ import axios from "axios";
 
 export const Main = () => {
     const [text, setText] = useState("");
-    const [triples, setTriples] = useState();
+    const [triples, setTriples] = useState<string>('');
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
+    const [error, setError] = useState<string>("");
 
     const handleExtractTriples = async () => {
         setLoading(true);
