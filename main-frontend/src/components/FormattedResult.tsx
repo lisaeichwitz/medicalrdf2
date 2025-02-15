@@ -7,15 +7,6 @@ interface FormattedResultProps {
 }
 
 export const FormattedResult = ({triples}: FormattedResultProps) => {
-
-    // const schemaRegex = /@prefix\s[a-z]*\:\s<https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)>\s./gm
-    //
-    // const extractSchemas = () => {
-    //     return schemaRegex.exec(triples);
-    // }
-    //
-    // console.log(extractSchemas());
-
     return (
         <SWrapper>
             <SyntaxHighlighter language="turtle" style={dracula}>
