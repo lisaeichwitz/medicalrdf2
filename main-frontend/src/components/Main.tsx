@@ -10,6 +10,7 @@ export const Main = () => {
     const [error, setError] = useState<string>("");
 
     const handleExtractTriples = async () => {
+
         setLoading(true);
         setError("");
 
@@ -17,8 +18,6 @@ export const Main = () => {
             const response = await axios.post("http://127.0.0.1:8000/extract_triples/", {
                 text,
             });
-
-            console.log(response.data);
 
             setTriples(response.data);
         } catch (err) {

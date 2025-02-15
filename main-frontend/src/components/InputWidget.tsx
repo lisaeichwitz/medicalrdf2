@@ -13,13 +13,13 @@ export const InputWidget = ({text, setText, onExtract}: InputWidgetProps) => {
             <h2>Text eingeben</h2>
             <SInputArea>
                 <Input value={text} setText={setText}/>
-                <Button onClick={onExtract}>Text speichern</Button>
+                <Button onClick={onExtract} disabled={!text.length}>Text speichern</Button>
             </SInputArea>
 
-            <SUploadArea>
-                oder
-                <Button>Datei hochladen</Button>
-            </SUploadArea>
+            {/*<SUploadArea>*/}
+            {/*    oder*/}
+            {/*    <Button>Datei hochladen</Button>*/}
+            {/*</SUploadArea>*/}
         </SHeader>
     )
 }
@@ -39,6 +39,7 @@ const SInputArea = styled.div`
     display: flex;
     gap: 16px;
     flex-direction: column;
+    flex: 1;
 `;
 
 const SUploadArea = styled.div`
