@@ -8,6 +8,7 @@ class EntityRetokenizeComponent:
     def __call__(self, doc):
         with doc.retokenize() as retokenizer:
             for ent in doc.ents:
+                print(ent)
                 retokenizer.merge(doc[ent.start:ent.end], attrs={"LEMMA": str(doc[ent.start:ent.end])})
         return doc
 

@@ -33,50 +33,50 @@ EX = Namespace("http://example.org/disorder/")
 @app.post("/extract_triples/")
 def extract_triples(request: TextRequest):
     """Extract disorder triples and return as a structured response"""
-    try:
-        doc = nlp(request.text)
+    doc = nlp(request.text)
 
-        if "citation_component" not in nlp.pipe_names:
-            nlp.add_pipe("citation_component", after="ner")
+    if "citation_component" not in nlp.pipe_names:
+        nlp.add_pipe("citation_component", after="ner")
 
-        if "merge_phrases" not in nlp.pipe_names:
-            nlp.add_pipe("entity_retokenizer_component", name='merge_phrases', after='citation_component')
+    if "merge_phrases" not in nlp.pipe_names:
+        nlp.add_pipe("entity_retokenizer_component", name='merge_phrases', after='citation_component')
 
-        with open('disorder_patterns.json', 'r') as file:
-            disorder_patterns = json.load(file)
+    with open('disorder_patterns.json', 'r') as file:
+        disorder_patterns = json.load(file)
 
-        # Add the EntityRuler to the pipeline
-        if "entity_ruler" not in nlp.pipe_names:
-            ruler = nlp.add_pipe('entity_ruler', after="ner")
-            ruler.add_patterns(disorder_patterns)
+    # Add the EntityRuler to the pipeline
+    if "entity_ruler" not in nlp.pipe_names:
+        ruler = nlp.add_pipe('entity_ruler', after="ner")
+        ruler.add_patterns(disorder_patterns)
 
-        if "disorder_extractor" not in nlp.pipe_names:
-            Doc.set_extension("disorder_descriptions", default=[], force=True)
-            nlp.add_pipe("disorder_extractor", after="merge_phrases")
+    if "disorder_extractor" not in nlp.pipe_names:
+        Doc.set_extension("disorder_descriptions", default=[], force=True)
+        Doc.set_extension("disorder_citations", default=[], force=True)
+        Doc.set_extension("disorder_diagnoses", default=[], force=True)
+        nlp.add_pipe("disorder_extractor", after="merge_phrases")
 
-        g = Graph()
-        g.bind("ex", EX)
-        g.bind("rdfs", RDFS)
-        g.bind("dct", DCTERMS)
+    g = Graph()
+    g.bind("ex", EX)
+    g.bind("rdfs", RDFS)
+    g.bind("dct", DCTERMS)
 
-        # Convert extracted disorders & descriptions into RDF triples
-        for disorder, description in doc._.disorder_descriptions:
-            disorder_uri = URIRef(EX + disorder.replace(" ", "_"))  # Create a unique URI
-            g.add((disorder_uri, RDFS.label, Literal(disorder)))  # Add disorder label
-            g.add((disorder_uri, DCTERMS.description, Literal(description)))  # Add description
+    for disorder, description in doc._.disorder_descriptions:
+        disorder_uri = URIRef(EX + disorder.replace(" ", "_"))
+        g.add((disorder_uri, RDFS.label, Literal(disorder)))
+        g.add((disorder_uri, DCTERMS.description, Literal(description)))
 
-        return {"rdf_data": g.serialize(format="turtle")}
+        for diag_term, diagnosis in doc._.disorder_diagnoses:
+            if diag_term == "diagnosis":
+                g.add((disorder_uri, URIRef(EX + "diagnosis"), Literal(diagnosis)))
 
-    except FileNotFoundError as e:
-        raise HTTPException(status_code=500, detail=f"File not found: {str(e)}")
-    except json.JSONDecodeError as e:
-        raise HTTPException(status_code=500, detail=f"Error decoding JSON: {str(e)}")
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
+        for dis, citation in doc._.disorder_citations:
+            if dis == disorder:
+                g.add((disorder_uri, URIRef(EX + "citation"), Literal(citation)))
+
+    return {"rdf_data": g.serialize(format="xml")}
 
 
 if __name__ == "__main__":
     import uvicorn
 
     uvicorn.run(app, host="127.0.0.1", port=8000)
-    # main()

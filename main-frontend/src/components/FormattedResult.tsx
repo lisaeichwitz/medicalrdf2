@@ -9,7 +9,9 @@ interface FormattedResultProps {
 export const FormattedResult = ({triples}: FormattedResultProps) => {
     return (
         <SWrapper>
-            <SyntaxHighlighter language="turtle" style={dracula}>
+            <SyntaxHighlighter language="xml" style={dracula}
+                               lineProps={{style: {wordBreak: 'break-all', whiteSpace: 'pre-wrap'}}}
+                               wrapLines={true}>
                 {triples}
             </SyntaxHighlighter>
         </SWrapper>
@@ -18,12 +20,4 @@ export const FormattedResult = ({triples}: FormattedResultProps) => {
 const SWrapper = styled.div`
     display: flex;
     flex-direction: column;
-`;
-
-const SMain = styled.div`
-    display: flex;
-    padding: 16px;
-    background-color: #F1EDEE;
-    flex: 2;
-    flex-direction: row;
 `;

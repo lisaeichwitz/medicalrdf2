@@ -19,7 +19,7 @@ export const Main = () => {
                 text,
             });
 
-            setTriples(response.data);
+            setTriples(response.data.rdf_data);
         } catch (err) {
             setError("Error fetching triples.");
         }

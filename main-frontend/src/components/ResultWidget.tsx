@@ -16,7 +16,8 @@ export const ResultWidget = ({triples, error, loading}: ResultWidgetProps) => {
                 Button einfügen, um zwischen den verschiedenen Views zu wechseln.
             </SHeader>
             <SMain>
-                {triples.length > 2 ? <FormattedResult triples={triples}/> : triples.length === 1 ? <>Es konnten keine
+                {triples.length > 120 ? <FormattedResult triples={triples}/> : triples.length === 120 ? <>Es konnten
+                    keine
                     Tripel gefunden werden.</> : <></>}
             </SMain>
         </SWrapper>
