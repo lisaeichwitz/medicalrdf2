@@ -1,23 +1,27 @@
-import spacy
-from spacy.tokens import Doc
 import json
-import entity_retokenizer
-import citation_component
-import description_extractor
-from rdflib import Graph, URIRef, Literal, Namespace
-from rdflib.namespace import RDF, RDFS, DCTERMS
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+
+import spacy
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from rdflib import Graph, URIRef, Literal, Namespace
+from rdflib.namespace import RDFS, DCTERMS
+from spacy.tokens import Doc
+
+import citation_component
+import citation_extractor
+import description_extractor
+import diagnosis_extractor
+import entity_retokenizer
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all domains (change this for security)
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all methods (GET, POST, OPTIONS, etc.)
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
@@ -44,16 +48,21 @@ def extract_triples(request: TextRequest):
     with open('disorder_patterns.json', 'r') as file:
         disorder_patterns = json.load(file)
 
-    # Add the EntityRuler to the pipeline
     if "entity_ruler" not in nlp.pipe_names:
         ruler = nlp.add_pipe('entity_ruler', after="ner")
         ruler.add_patterns(disorder_patterns)
 
-    if "disorder_extractor" not in nlp.pipe_names:
+    if "description_extractor" not in nlp.pipe_names:
         Doc.set_extension("disorder_descriptions", default=[], force=True)
+        nlp.add_pipe("description_extractor", after="merge_phrases")
+
+    if "citation_extractor" not in nlp.pipe_names:
         Doc.set_extension("disorder_citations", default=[], force=True)
+        nlp.add_pipe("citation_extractor", after="merge_phrases")
+
+    if "diagnosis_extractor" not in nlp.pipe_names:
         Doc.set_extension("disorder_diagnoses", default=[], force=True)
-        nlp.add_pipe("disorder_extractor", after="merge_phrases")
+        nlp.add_pipe("diagnosis_extractor", after="merge_phrases")
 
     g = Graph()
     g.bind("ex", EX)

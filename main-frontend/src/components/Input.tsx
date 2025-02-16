@@ -7,7 +7,7 @@ interface InputProps {
 
 export const Input = ({value, setText}: InputProps) => {
     return (
-        <SInput rows={40} value={value} onChange={(ev) => setText(ev.target.value)}/>
+        <SInput rows={40} value={value} onChange={(ev) => setText(ev.target.value)} spellCheck={false}/>
     )
 }
 
